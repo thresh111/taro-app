@@ -1,0 +1,34 @@
+{
+  "miniprogramRoot": "dist/",
+  "projectname": "taro-app",
+  "description": "taro-app",
+  "appid": "wx4e4431c9af729da5",
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "enhance": false,
+    "compileHotReLoad": false,
+    "postcss": false,
+    "minified": false,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "minifyWXML": false,
+    "ignoreUploadUnusedFiles": true,
+    "minifyWXSS": false
+  },
+  "compileType": "miniprogram",
+  "libVersion": "3.3.5",
+  "srcMiniprogramRoot": "dist/",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "condition": {},
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  }
+}
