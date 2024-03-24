@@ -10,6 +10,8 @@ export default defineAppConfig({
     "pages/customized_machine/index",
     "pages/diy_key_board/index",
     "pages/product_details/index",
+    "pages/machine_plan/index",
+    "pages/product_list/index",
   ],
   window: {
     backgroundTextStyle: "light",
