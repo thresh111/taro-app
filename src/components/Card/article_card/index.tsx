@@ -1,38 +1,56 @@
 import { Image, Text, View } from "@tarojs/components";
+import Taro from "@tarojs/taro";
 import { AtIcon } from "taro-ui";
 
-export interface IAppProps {}
+export interface IAppProps {
+  _id: string;
+  title: string;
+  content: string;
+  description: string;
+  keyword: string;
+  star: number;
+  eyes: number;
+  author: string;
+  swiperItems: string[];
+}
 
 export default function App(props: IAppProps) {
+  const { title, description, keyword, star, eyes, swiperItems, author, _id } =
+    props;
+
+  const handleClick = () => {
+    Taro.navigateTo({
+      url: `/pages/article_detail/index?id=${_id}`,
+    });
+  };
   return (
-    <View className="w-full h-[710px] bg-white pt-[27px] px-[15px] rounded-lg mb-[20px]">
-      <View className="font-bold mb-[20px] text-base">
-        在小配列键盘火热的当下，还有人喜欢三键区的键盘吗?
-      </View>
+    <View
+      onClick={handleClick}
+      className="w-full h-[710px] bg-white pt-[27px] px-[15px] rounded-lg mb-[20px]"
+    >
+      <View className="font-bold mb-[20px] text-base">{title}</View>
       <View className="text-[#808490] text-sm mb-[15px] line-clamp-1">
-        回望过去，经典始终还是经典，不论时间如何改变。
+        {description}
       </View>
       <View className="h-[375px] w-full  flex flex-wrap justify-evenly mb-[10px]">
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => {
-          return (
-            <Image
-              className="w-[32%] h-[32%]"
-              src="https://pic.imgdb.cn/item/65fe4c8c9f345e8d03cbd74e.jpg"
-            />
-          );
-        })}
+        {swiperItems.length > 0 &&
+          swiperItems.map((item) => {
+            return <Image className="w-[32%] h-[32%]" src={item} />;
+          })}
       </View>
-      <View className="text-[#808490] text-sm  mb-[15px]">客制化键帽</View>
-      <View className="flex justify-between mb-[20px]">
-        <View className="text-[#808490]">小名实验室</View>
+      <View className="text-[#808490] text-sm px-[20px]  mb-[15px]">
+        {keyword}
+      </View>
+      <View className="flex justify-between px-[20px] mb-[20px]">
+        <View className="text-[#808490]">{author}</View>
         <View>
           <Text className="mr-[20px] text-[#808490]">
             <AtIcon value="heart" size="18" color="#808490" />
-            <Text className="ml-[10px]">3</Text>
+            <Text className="ml-[10px]">{star}</Text>
           </Text>
           <Text className="text-[#808490]">
             <AtIcon value="clock" size="18" color="#808490" />
-            <Text className="ml-[10px]">434</Text>
+            <Text className="ml-[10px]">{eyes}</Text>
           </Text>
         </View>
       </View>
