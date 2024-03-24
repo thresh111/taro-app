@@ -9,9 +9,10 @@ export default defineAppConfig({
     "pages/video_course/index",
     "pages/customized_machine/index",
     "pages/diy_key_board/index",
-    "pages/product_details/index",
+    "pages/product_detail/index",
     "pages/machine_plan/index",
     "pages/product_list/index",
+    "pages/article_detail/index",
   ],
   window: {
     backgroundTextStyle: "light",
@@ -34,12 +35,6 @@ export default defineAppConfig({
         text: "分类",
         iconPath: "assets/tabBar/index2.png",
         selectedIconPath: "assets/tabBar/index2_active.png",
-      },
-      {
-        pagePath: "pages/index/index",
-        text: "首页",
-        iconPath: "assets/tabBar/index3.png",
-        selectedIconPath: "assets/tabBar/index3_active.png",
       },
       {
         pagePath: "pages/shopCar/index",

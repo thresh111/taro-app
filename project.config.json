@@ -1,4 +1,5 @@
 {
+  "cloudfunctionRoot": "cloudFns/",
   "miniprogramRoot": "dist/",
   "projectname": "taro-app",
   "description": "taro-app",

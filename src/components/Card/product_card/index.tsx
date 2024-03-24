@@ -1,11 +1,20 @@
 import { Image, Text, View } from "@tarojs/components";
 import xsq from "@/assets/images/xsq.png";
+import Taro from "@tarojs/taro";
 
 export interface IAppProps {}
 
 export default function App(props: IAppProps) {
+  const handleClick = () => {
+    Taro.navigateTo({
+      url: "/pages/product_detail/index",
+    });
+  };
   return (
-    <View className="w-full h-[200px] flex py-[20px] px-[20px] rounded-lg bg-white mb-[40px]">
+    <View
+      onClick={handleClick}
+      className="w-full h-[200px] flex py-[20px] px-[20px] rounded-lg bg-white mb-[40px]"
+    >
       <Image src={xsq} className="w-[180px] h-[180px] mr-[30px]" />
       <View className="flex-1 ">
         <View className="text-[#ccc] text-sm mb-[40px] line-clamp-2">

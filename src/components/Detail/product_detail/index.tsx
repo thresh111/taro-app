@@ -3,16 +3,40 @@ import { AtFloatLayout, AtIcon, AtTabBar } from "taro-ui";
 import swiper1 from "@/assets/images/diyKeyboard1.jpg";
 import swiper2 from "@/assets/images/diyKeyboard2.jpg";
 import swiper3 from "@/assets/images/diyKeyboard3.jpg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Taro, { useRouter } from "@tarojs/taro";
 
 export interface IAppProps {}
 
 export default function App(props: IAppProps) {
   const [floatOpen, setFloatOpen] = useState(false);
 
+  const route = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
+  const id = route.params.id;
+
+  const [commodity, setCommodity] = useState<any>();
+
+  useEffect(() => {
+    id && getCommodityDetail();
+  }, []);
+
+  const getCommodityDetail = async () => {
+    const res = await Taro.request({
+      url: `http://localhost:3000/commodity/${id}`,
+      method: "GET",
+      success() {
+        setIsLoading(false);
+      },
+    });
+
+    setCommodity(res.data);
+  };
+
   return (
     <>
-      <View className="w-full h-screen">
+    {isLoading? <SkeletonComponent/> : <>
+    <View className="w-full h-screen">
         {/* 轮播图 */}
         <Swiper
           indicatorColor="#999"
@@ -123,5 +147,88 @@ export default function App(props: IAppProps) {
         加入购物车
       </View>
     </>
+}</>
+  );
+}
+
+function SkeletonComponent() {
+  return (
+    <View className="w-full h-screen">
+      {/* 轮播图 */}
+      <Swiper
+      className="skeleton-swiper"
+      indicatorColor="#999"
+      indicatorActiveColor="#333"
+      circular
+      indicatorDots
+      autoplay
+    >
+      {[...Array(3)].map((_, index) => (
+        <SwiperItem key={index}>
+          <View className="w-full h-[200px] bg-gray-300 rounded-lg animate-pulse" /> {/* 调整高度以匹配实际图片的高度 */}
+        </SwiperItem>
+      ))}
+    </Swiper>
+
+      {/* 主体 */}
+      <View className="w-full h-[300px] rounded-lg pt-[70px] px-[28px] bg-white mb-[40px]">
+      {/* 价格部分的骨架屏 */}
+      <View className="flex justify-between mb-[40px]">
+        <View className="h-[40px] w-[80px] animate-pulse bg-gray-300 rounded-lg" />
+        <Text className="text-[#b5b2c8]">0评价</Text>
+      </View>
+
+      {/* 标题部分的骨架屏 */}
+      <View className="flex-1 space-y-[4px]">
+        {[...Array(3)].map((_, i) => (
+          <View key={i} className="animate-pulse h-[24px] w-full bg-gray-300 rounded-sm" />
+        ))}
+      </View>
+    </View>
+        {/* 标签栏 */}
+        <View className="w-full h-[100px] rounded-lg px-[30px] flex  items-center bg-white mb-[40px]">
+          <Text className="text-[#b5b2c8] mr-[30px]">售后</Text>
+          <View className="flex justify-evenly items-center">
+            <Text className="text-[#b5b2c8] mr-[20px] flex items-center">
+              <AtIcon value="check-circle" size="18" color="#000" />
+              <Text className="text-[#000] ml-[10px] text-[25px]">
+                定制商品
+              </Text>
+            </Text>
+            <Text className="text-[#b5b2c8] mr-[20px] flex items-center">
+              <AtIcon value="check-circle" size="18" color="#000" />
+              <Text className="text-[#000] ml-[10px] text-[25px]">
+                全新正品
+              </Text>
+            </Text>
+            <Text className="text-[#b5b2c8] mr-[20px] flex items-center">
+              <AtIcon value="check-circle" size="18" color="#000" />
+              <Text className="text-[#000] ml-[10px] text-[25px]">
+                免费装机发出
+              </Text>
+            </Text>
+          </View>
+          <AtIcon value="chevron-right" size="20" color="#000" />
+        </View>
+      </View>
+   
+      <View className="w-full h-full rounded-lg bg-white">
+        {/* 商品详情标题的骨架屏 */}
+        <View className="text-black font-bold text-[60px] mb-[30px] animate-pulse h-[60px] w-full bg-gray-300 rounded-t-lg" />
+
+        {/* 商品详情内容的骨架屏 */}
+        <View className="mb-[20px]">
+          {[...Array(8)].map((_, i) => (
+            <View
+              key={i}
+              className="animate-pulse h-[24px] mb-[10px] bg-gray-300 rounded-lg"
+            />
+          ))}
+        </View>
+
+        {/* 商品详情图片的骨架屏 */}
+        <View className="w-full h-[700px] bg-gray-300 rounded-b-lg animate-pulse" />
+      </View>
+    </View>
   );
 }

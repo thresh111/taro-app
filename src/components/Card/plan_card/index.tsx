@@ -1,10 +1,19 @@
 import { Navigator, Text, View } from "@tarojs/components";
+import Taro from "@tarojs/taro";
 
 export interface IAppProps {}
 
 export default function App(props: IAppProps) {
+  const handleClick = () => {
+    Taro.navigateTo({
+      url: ``,
+    });
+  };
   return (
-    <Navigator url="#" className="w-full  h-[1000px]  rounded-2xl mb-[30px]">
+    <View
+      onClick={handleClick}
+      className="w-full  h-[1000px]  rounded-2xl mb-[30px]"
+    >
       <View className="text-lg pt-[20px] bg-[#222222] rounded-t-2xl text-white h-[150px] flex-col justify-center items-center text-center">
         <View>方案一</View>
         <Text className="font-bold">售价 ¥ 7343</Text>
@@ -30,6 +39,6 @@ export default function App(props: IAppProps) {
           选择
         </View>
       </View>
-    </Navigator>
+    </View>
   );
 }
