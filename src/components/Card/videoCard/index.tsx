@@ -18,7 +18,9 @@ export default function VideoCard(props: IVideoCardProps) {
         />
       </View>
       <View className="ml-[50px]">
-        <View className="mb-[60px] text-[30px]">收到主机后如何拆箱</View>
+        <View className="mb-[60px] text-[30px] line-clamp-2">
+          收到主机后如何拆箱
+        </View>
         <View className="flex items-center justify-between">
           <View className="flex items-center">
             <Text className="text-[20px] text-[#979797]">DIY实验室</Text>

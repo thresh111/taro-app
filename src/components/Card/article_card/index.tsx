@@ -9,7 +9,7 @@ export default function App(props: IAppProps) {
       <View className="font-bold mb-[20px] text-base">
         在小配列键盘火热的当下，还有人喜欢三键区的键盘吗?
       </View>
-      <View className="text-[#808490] text-sm mb-[15px]">
+      <View className="text-[#808490] text-sm mb-[15px] line-clamp-1">
         回望过去，经典始终还是经典，不论时间如何改变。
       </View>
       <View className="h-[375px] w-full  flex flex-wrap justify-evenly mb-[10px]">
