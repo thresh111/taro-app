@@ -1,14 +1,9 @@
 import { Image, Text, View, Swiper, SwiperItem } from "@tarojs/components";
-import { AtFloatLayout, AtIcon, AtTabBar } from "taro-ui";
-import swiper1 from "@/assets/images/diyKeyboard1.jpg";
-import swiper2 from "@/assets/images/diyKeyboard2.jpg";
-import swiper3 from "@/assets/images/diyKeyboard3.jpg";
+import { AtFloatLayout, AtIcon } from "taro-ui";
 import { useEffect, useState } from "react";
 import Taro, { useRouter } from "@tarojs/taro";
 
-export interface IAppProps {}
-
-export default function App(props: IAppProps) {
+export default function App() {
   const [floatOpen, setFloatOpen] = useState(false);
 
   const [isLoading, setIsLoading] = useState(true);
