@@ -10,8 +10,15 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/diy_key_board/index",
-          "pathName": "pages/diy_key_board/index",
+          "name": "pages/product_detail/index",
+          "pathName": "pages/product_detail/index",
+          "query": "id=66011d9cc285db46474f2612",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/category/index",
+          "pathName": "pages/category/index",
           "query": "",
           "launchMode": "default",
           "scene": null

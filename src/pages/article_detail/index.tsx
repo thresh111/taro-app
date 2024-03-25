@@ -2,7 +2,7 @@ import { Image, Text, View } from "@tarojs/components";
 import { Swiper, SwiperItem } from "@tarojs/components";
 import Taro, { useRouter } from "@tarojs/taro";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export interface IAppProps {}
 

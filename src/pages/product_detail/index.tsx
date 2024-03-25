@@ -57,9 +57,9 @@ export default function App(props: IAppProps) {
 
             {/* 主体 */}
             <View className="w-full bg-[#f8f8f8] p-[20px] mb-[30px]">
-              <View className="w-full h-[300px] rounded-lg pt-[70px] px-[28px] bg-white mb-[40px]">
+              <View className="w-full h-[300px] rounded-lg pt-[40px]  px-[28px] bg-white mb-[40px]">
                 {/**价格 */}
-                <View className="flex justify-between mb-[40px]">
+                <View className="flex  justify-between  mb-[40px]">
                   <Text className="font-semibold text-[40px]">
                     ¥{commodityData.price}
                   </Text>
@@ -81,20 +81,20 @@ export default function App(props: IAppProps) {
                 <Text className="text-[#b5b2c8] mr-[30px]">售后</Text>
                 <View className="flex justify-evenly items-center">
                   <Text className="text-[#b5b2c8] mr-[20px] flex items-center">
-                    <AtIcon value="check-circle" size="18" color="#000" />
-                    <Text className="text-[#000] ml-[10px] text-[25px]">
+                    <AtIcon value="check-circle" size="15" color="#000" />
+                    <Text className="text-[#000] ml-[10px] text-[22px]">
                       定制商品
                     </Text>
                   </Text>
                   <Text className="text-[#b5b2c8] mr-[20px] flex items-center">
-                    <AtIcon value="check-circle" size="18" color="#000" />
-                    <Text className="text-[#000] ml-[10px] text-[25px]">
+                    <AtIcon value="check-circle" size="15" color="#000" />
+                    <Text className="text-[#000] ml-[10px] text-[22px]">
                       全新正品
                     </Text>
                   </Text>
                   <Text className="text-[#b5b2c8] mr-[20px] flex items-center">
-                    <AtIcon value="check-circle" size="18" color="#000" />
-                    <Text className="text-[#000] ml-[10px] text-[25px]">
+                    <AtIcon value="check-circle" size="15" color="#000" />
+                    <Text className="text-[#000] ml-[10px] text-[22px]">
                       免费装机发出
                     </Text>
                   </Text>

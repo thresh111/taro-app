@@ -1,17 +1,38 @@
 import { Image, Text, View } from "@tarojs/components";
-import { useRouter } from "@tarojs/taro";
-import { useEffect } from "react";
+import Taro, { useRouter } from "@tarojs/taro";
+import { useEffect, useState } from "react";
 import ProductCard from "@/components/Card/product_card";
+
 export interface IAppProps {}
 
 export default function App(props: IAppProps) {
   const route = useRouter();
+  const type = route.params.type;
+  console.log(type, "type");
+
+  const [commodityData, setCommodityData] = useState([]);
+
+  useEffect(() => {
+    getCommodityData();
+  }, []);
+
+  const getCommodityData = async () => {
+    const res = await Taro.request({
+      url: `http://localhost:3000/commodity/type`,
+      method: "GET",
+      data: {
+        type,
+      },
+    });
+    setCommodityData(res.data);
+  };
 
   return (
     <View className="h-screen w-full p-[30px]  bg-[#f8f8f8] overflow-auto">
-      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((item) => {
-        return <ProductCard />;
-      })}
+      {commodityData.length > 0 &&
+        commodityData.map((item) => {
+          return <ProductCard {...(item as any)} />;
+        })}
     </View>
   );
 }
