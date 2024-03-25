@@ -1,7 +1,6 @@
 export default defineAppConfig({
   pages: [
     "pages/explore/index",
-    "pages/index/index",
     "pages/category/index",
     "pages/shopCar/index",
     "pages/my/index",
