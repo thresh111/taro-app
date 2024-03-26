@@ -1,12 +1,27 @@
 import { Image, Navigator, Text, View } from "@tarojs/components";
-import React from "react";
-import { AtIcon } from "taro-ui";
+import React, { useEffect, useState } from "react";
+import { AtButton, AtIcon } from "taro-ui";
 import banner_png from "@/assets/images/banner.png";
 import Taro from "@tarojs/taro";
 
-export interface IAppProps {}
+function App() {
+  useEffect(() => {
+    const data = Taro.getStorageSync("token_id");
+    if (!Boolean(data)) {
+      Taro.showToast({
+        title: "未登录",
+        icon: "none",
+        duration: 2000,
+        mask: true,
+      });
+      setTimeout(() => {
+        Taro.navigateTo({
+          url: "/pages/login/index",
+        });
+      }, 2000);
+    }
+  }, []);
 
-export default function App(props: IAppProps) {
   const handleClick = () => {
     Taro.login({
       success(result) {
@@ -14,6 +29,7 @@ export default function App(props: IAppProps) {
       },
     });
   };
+
   return (
     <View className="bg-gradient-to-b h-screen from-[#c5b7b0] via-[#f0bba9] to-[#f6f6f6] px-[15px] pt-[20px]">
       <View
@@ -26,42 +42,8 @@ export default function App(props: IAppProps) {
         />
         <Text className="font-semibold">登录/注册</Text>
       </View>
-      {/**收藏 优惠券 */}
-
-      {/* <View className="flex justify-between mb-[17px]">
-        <View className="flex justify-between items-center w-[48%] h-[150px] bg-white rounded-lg p-[20px]">
-          <View className="flex items-center">
-            <AtIcon
-              className="mr-[10px]"
-              value="credit-card"
-              size="25"
-              color="#000"
-            ></AtIcon>
-            <Text>优惠券</Text>
-          </View>
-          <View>
-            <AtIcon value="chevron-right" size="25" color="#000" />
-          </View>
-        </View>
-
-        <View className="flex justify-between items-center w-[48%] h-[150px] bg-white rounded-lg p-[20px]">
-          <View className="flex items-center">
-            <AtIcon
-              className="mr-[10px]"
-              value="star"
-              size="25"
-              color="#000"
-            ></AtIcon>
-            <Text>收藏</Text>
-          </View>
-          <View>
-            <AtIcon value="chevron-right" size="25" color="#000" />
-          </View>
-        </View>
-      </View> */}
-      {/* <View className="w-full h-[180px]">
-        <Image src={banner_png} className="w-full h-[180px]" />
-      </View> */}
     </View>
   );
 }
+
+export default App;

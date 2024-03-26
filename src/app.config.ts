@@ -12,6 +12,7 @@ export default defineAppConfig({
     "pages/machine_plan/index",
     "pages/product_list/index",
     "pages/article_detail/index",
+    "pages/login/index",
   ],
   window: {
     backgroundTextStyle: "light",
