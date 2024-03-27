@@ -26,8 +26,35 @@ export default function App() {
       },
     });
     setCommodityData(res.data);
+  };
 
-    console.log(res.data);
+  const [once, setOnce] = useState(0);
+  const handClick = async () => {
+    if (once === 0) {
+      setOnce((p) => p + 1);
+      const data = await Taro.request({
+        url: "http://localhost:3000/user/shopcart",
+        method: "POST",
+        data: {
+          commodity: commodityData,
+          _id: Taro.getStorageSync("userId"),
+        },
+      });
+      if (data.data.message === "添加成功") {
+        Taro.showToast({
+          title: "添加成功",
+          mask: true,
+          icon: "success",
+          duration: 1000,
+        });
+      }
+    } else {
+      Taro.showToast({
+        title: "已添加过",
+      });
+
+      return;
+    }
   };
 
   return (
@@ -139,7 +166,10 @@ export default function App() {
               />
             </View>
           </View>
-          <View className="fixed bottom-0 h-[200px] z-10 w-full flex justify-center bg-white items-center px-8 py-4 shadow-md text-black font-semibold">
+          <View
+            onClick={handClick}
+            className="fixed bottom-0 h-[200px] z-10 w-full flex justify-center bg-white items-center px-8 py-4 shadow-md text-black font-semibold"
+          >
             加入购物车
           </View>
         </>

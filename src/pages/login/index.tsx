@@ -103,7 +103,7 @@ export default function Login() {
         return;
       } else {
         Taro.showToast({
-          title: "注册成功 将自动登录",
+          title: "注册成功",
           icon: "success",
           duration: 2000,
           mask: true,

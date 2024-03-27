@@ -5,7 +5,6 @@ import banner_png from "@/assets/images/banner.png";
 import Taro from "@tarojs/taro";
 
 function App() {
-  const [userId, setUserId] = useState("微信用户");
   useEffect(() => {
     const LOGINTOKEN = Taro.getStorageSync("token");
     if (!Boolean(LOGINTOKEN)) {
@@ -30,8 +29,15 @@ function App() {
           src="https://pic.imgdb.cn/item/65fe5fc59f345e8d0355aeac.png"
           className="rounded-[50%] w-[150px] h-[150px] bg-rose-100 mr-[40px] "
         />
-        <Text className="font-semibold">登录/注册</Text>
-        {Boolean(Taro.getStorageSync("token"))}
+        {Boolean(Taro.getStorageSync("token")) ? (
+          <View className="flex flex-col">
+            <Text className="text-[#000] text-lg font-bold">微信用户</Text>
+          </View>
+        ) : (
+          <View className="flex flex-col">
+            <Text className="text-[#000] text-lg font-bold">请登录</Text>
+          </View>
+        )}
       </View>
     </View>
   );
