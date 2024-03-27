@@ -9,7 +9,7 @@ export interface IAppProps {}
 export default function App(props: IAppProps) {
   const handleClick = () => {
     Taro.pageScrollTo({
-      scrollTop: 810,
+      scrollTop: 750,
       duration: 300,
     });
   };

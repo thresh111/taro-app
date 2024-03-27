@@ -35,6 +35,7 @@ export default function Login() {
         },
       });
       console.log(res, "resres");
+
       if (res.data.message == "用户不存在") {
         Taro.showToast({
           title: "用户不存在",
@@ -63,6 +64,7 @@ export default function Login() {
           res.data.data._id + res.data.data.username
         );
         Taro.setStorageSync("userId", res.data.data._id);
+        Taro.setStorageSync("userCover", res.data.data.userCover);
 
         setTimeout(() => {
           Taro.switchTab({
@@ -114,6 +116,7 @@ export default function Login() {
           res.data.data._id + res.data.data.username
         );
         Taro.setStorageSync("userId", res.data.data._id);
+        Taro.setStorageSync("userCover", res.data.data.userCover);
       }
 
       setTimeout(() => {

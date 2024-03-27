@@ -12,13 +12,13 @@ export default function App(props: IAppProps) {
   return (
     <View
       onClick={handleClick}
-      className="w-full  h-[1000px]  rounded-2xl mb-[30px]"
+      className="w-full  h-[1000px]  rounded-2xl mb-[100px]"
     >
       <View className="text-lg pt-[20px] bg-[#222222] rounded-t-2xl text-white h-[150px] flex-col justify-center items-center text-center">
         <View>方案一</View>
         <Text className="font-bold">售价 ¥ 7343</Text>
       </View>
-      <View className="bg-[#171717] rounded-b-2xl h-[800px] pt-[40px]">
+      <View className="bg-[#171717] rounded-b-2xl h-[900px] pt-[40px]">
         <View className="text-center text-white font-bold text-xl mb-[40px]">
           配置
         </View>

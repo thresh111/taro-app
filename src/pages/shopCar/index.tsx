@@ -1,6 +1,7 @@
 import { Button, Image, Text, View } from "@tarojs/components";
-import Taro from "@tarojs/taro";
+import Taro, { useDidShow } from "@tarojs/taro";
 import { useEffect, useState } from "react";
+import { AtButton } from "taro-ui";
 
 export interface IAppProps {}
 
@@ -8,31 +9,23 @@ export default function App(props: IAppProps) {
   const LOGINTOKEN = Taro.getStorageSync("token");
   const [shopList, setShopList] = useState([]);
 
-  useEffect(() => {
-    if (!Boolean(LOGINTOKEN)) {
-      Taro.showToast({
-        title: "未登录",
-        icon: "none",
-        duration: 2000,
-        mask: true,
-      });
-    }
-  }, []);
+  const _id = Taro.getStorageSync("userId");
 
-  useEffect(() => {
+  useDidShow(() => {
     fetchShopList();
-  }, []);
+    console.log(222);
+  });
 
-  const fetchShopList = async () => {
-    const res = await Taro.request({
+  const fetchShopList = () => {
+    Taro.request({
       url: "http://localhost:3000/user/shoplist",
       method: "GET",
       data: {
-        _id: Taro.getStorageSync("userId"),
+        _id,
       },
+    }).then((res) => {
+      setShopList(res.data.data);
     });
-
-    setShopList(res.data.data);
   };
 
   const handleTologin = () => {
@@ -41,12 +34,18 @@ export default function App(props: IAppProps) {
     });
   };
 
+  const handleToNavgitor = () => {
+    Taro.switchTab({
+      url: "/pages/category/index",
+    });
+  };
+
   const handleDel = async (commodityId) => {
     const res = await Taro.request({
       url: "http://localhost:3000/user/delShoplist",
       method: "POST",
       data: {
-        _id: Taro.getStorageSync("userId"),
+        _id,
         commodityId: commodityId,
       },
     });
@@ -59,7 +58,7 @@ export default function App(props: IAppProps) {
         duration: 2000,
         mask: true,
       });
-      fetchShopList();
+      // fetchShopList();
     } else {
       Taro.showToast({
         title: "删除失败",
@@ -74,7 +73,7 @@ export default function App(props: IAppProps) {
     <>
       {Boolean(Taro.getStorageSync("token")) ? (
         <View className="h-screen w-full bg-[#f8f8f8]">
-          {shopList.length > 0 &&
+          {shopList.length > 0 ? (
             shopList.map((item: any) => {
               return (
                 <View className="h-[200px] flex bg-white w-full px-[40px]  rounded-lg mb-[30px]">
@@ -83,17 +82,30 @@ export default function App(props: IAppProps) {
                     <View className="text-base line-clamp-1">{item.title}</View>
                     <View className="flex justify-between items-center ">
                       <View className="mb-[30px]">价格: ¥ {item.price}</View>
-                      <Button size="mini" className="" onClick={() => {}}>
+                      <AtButton size="small" className="" onClick={() => {}}>
                         购买
-                      </Button>
-                      <Button size="mini" onClick={() => handleDel(item._id)}>
+                      </AtButton>
+                      <AtButton
+                        size="small"
+                        onClick={() => handleDel(item._id)}
+                      >
                         删除
-                      </Button>
+                      </AtButton>
                     </View>
                   </View>
                 </View>
               );
-            })}
+            })
+          ) : (
+            <View className=" text-lg">
+              <Button
+                className="flex justify-center items-center"
+                onClick={handleToNavgitor}
+              >
+                购物车是空的,去购物
+              </Button>
+            </View>
+          )}
         </View>
       ) : (
         <View className="flex flex-col">
