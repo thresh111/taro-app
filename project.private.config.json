@@ -10,8 +10,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/shopCar/index",
-          "pathName": "pages/shopCar/index",
+          "name": "pages/my/index",
+          "pathName": "pages/my/index",
           "query": "",
           "launchMode": "default",
           "scene": null

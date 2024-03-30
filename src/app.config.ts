@@ -13,6 +13,7 @@ export default defineAppConfig({
     "pages/product_list/index",
     "pages/article_detail/index",
     "pages/login/index",
+    "pages/video_course/detail",
   ],
   window: {
     backgroundTextStyle: "light",

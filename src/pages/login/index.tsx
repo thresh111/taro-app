@@ -65,7 +65,10 @@ export default function Login() {
         Taro.setStorageSync("userId", res.data.data._id);
 
         setTimeout(() => {
-          Taro.switchTab({
+          // Taro.switchTab({
+          //   url: "/pages/my/index",
+          // });
+          Taro.reLaunch({
             url: "/pages/my/index",
           });
         }, 2000);
@@ -117,7 +120,10 @@ export default function Login() {
       }
 
       setTimeout(() => {
-        Taro.switchTab({
+        // Taro.switchTab({
+        //   url: "/pages/my/index",
+        // });
+        Taro.reLaunch({
           url: "/pages/my/index",
         });
       }, 2000);

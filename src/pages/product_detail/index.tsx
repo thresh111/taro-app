@@ -30,7 +30,22 @@ export default function App() {
 
   const [once, setOnce] = useState(0);
   const handClick = async () => {
+    const LOGINTOKEN = Taro.getStorageSync("token");
+    if (!Boolean(LOGINTOKEN)) {
+      Taro.showToast({
+        title: "未登录",
+        icon: "none",
+        duration: 2000,
+        mask: true,
+      });
+      setTimeout(() => {
+        Taro.navigateTo({
+          url: "/pages/login/index",
+        });
+      }, 2000);
+    }
     if (once === 0) {
+      if (!Boolean(LOGINTOKEN)) return;
       setOnce((p) => p + 1);
       const data = await Taro.request({
         url: "http://localhost:3000/user/shopcart",
