@@ -8,7 +8,6 @@ export interface IAppProps {}
 export default function App(props: IAppProps) {
   const route = useRouter();
   const type = route.params.type;
-  console.log(type, "type");
 
   const [commodityData, setCommodityData] = useState([]);
 

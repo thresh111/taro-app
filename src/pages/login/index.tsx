@@ -34,7 +34,6 @@ export default function Login() {
           password,
         },
       });
-      console.log(res, "resres");
       if (res.data.message == "用户不存在") {
         Taro.showToast({
           title: "用户不存在",

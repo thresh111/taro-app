@@ -72,7 +72,6 @@ export default function App(props: IAppProps) {
         commodityId: commodityId,
       },
     });
-    console.log(res, "res");
 
     if (res.data.code === 200) {
       Taro.showToast({

@@ -43,8 +43,6 @@ function App() {
     });
   };
 
-  console.log(Taro.getStorageSync("token"), "125");
-
   return (
     <View className="bg-gradient-to-b h-screen from-[#c5b7b0] via-[#f0bba9] to-[#f6f6f6] px-[15px] pt-[20px]">
       <View className="w-full h-[150px] flex items-center mb-[40px]">
