@@ -6,17 +6,5 @@
     "urlCheck": false,
     "bigPackageSizeSupport": true
   },
-  "condition": {
-    "miniprogram": {
-      "list": [
-        {
-          "name": "pages/my/index",
-          "pathName": "pages/my/index",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        }
-      ]
-    }
-  }
+  "condition": {}
 }

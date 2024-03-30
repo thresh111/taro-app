@@ -1,5 +1,6 @@
 import { Button, Image, Text, View } from "@tarojs/components";
 import Taro, { useDidShow } from "@tarojs/taro";
+import Taro, { useDidShow } from "@tarojs/taro";
 import { useEffect, useState } from "react";
 import { AtButton, AtTag } from "taro-ui";
 
@@ -27,6 +28,7 @@ export default function App(props: IAppProps) {
   }, []);
 
   useDidShow(() => {
+  useDidShow(() => {
     fetchShopList();
   });
 
@@ -50,11 +52,11 @@ export default function App(props: IAppProps) {
       url: "http://localhost:3000/user/shoplist",
       method: "GET",
       data: {
-        _id: Taro.getStorageSync("userId"),
+        _id,
       },
+    }).then((res) => {
+      setShopList(res.data.data);
     });
-
-    setShopList(res.data.data);
   };
 
   const handleTologin = () => {
@@ -63,12 +65,18 @@ export default function App(props: IAppProps) {
     });
   };
 
+  const handleToNavgitor = () => {
+    Taro.switchTab({
+      url: "/pages/category/index",
+    });
+  };
+
   const handleDel = async (commodityId) => {
     const res = await Taro.request({
       url: "http://localhost:3000/user/delShoplist",
       method: "POST",
       data: {
-        _id: Taro.getStorageSync("userId"),
+        _id,
         commodityId: commodityId,
       },
     });
@@ -81,7 +89,7 @@ export default function App(props: IAppProps) {
         duration: 2000,
         mask: true,
       });
-      fetchShopList();
+      // fetchShopList();
     } else {
       Taro.showToast({
         title: "删除失败",
@@ -111,7 +119,7 @@ export default function App(props: IAppProps) {
     <>
       {Boolean(Taro.getStorageSync("token")) ? (
         <View className="h-screen w-full bg-[#f8f8f8]">
-          {shopList.length > 0 &&
+          {shopList.length > 0 ? (
             shopList.map((item: any) => {
               return (
                 <View className="h-[200px] flex bg-white w-full px-[40px]  rounded-lg mb-[30px]">

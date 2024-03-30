@@ -2,6 +2,7 @@ import { Image, Text, View } from "@tarojs/components";
 import { useEffect, useState } from "react";
 import { AtButton } from "taro-ui";
 import Taro from "@tarojs/taro";
+const img = Taro.getStorageSync("userCover");
 
 function App() {
   const initialToken = Taro.getStorageSync("token");
@@ -47,9 +48,9 @@ function App() {
 
   return (
     <View className="bg-gradient-to-b h-screen from-[#c5b7b0] via-[#f0bba9] to-[#f6f6f6] px-[15px] pt-[20px]">
-      <View className="w-full h-[150px] flex items-center mb-[40px]">
+      <View className="w-full h-[150px] flex items-center mb-[50px]">
         <Image
-          src="https://pic.imgdb.cn/item/65fe5fc59f345e8d0355aeac.png"
+          src={img}
           className="rounded-[50%] w-[150px] h-[150px] bg-rose-100 mr-[40px] "
         />
 

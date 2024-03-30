@@ -12,7 +12,7 @@ export default function App() {
 
   const handleClick = () => {
     Taro.pageScrollTo({
-      scrollTop: 810,
+      scrollTop: 750,
       duration: 300,
     });
   };
